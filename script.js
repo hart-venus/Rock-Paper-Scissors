@@ -55,8 +55,29 @@ function game(){
         
         let gameResult = playRound(playerInput, computerPlay());
 
-        
+        if(gameResult=='P'){
+            timesWon += 1;
+            console.log('you won!')
+        }
+        else if(gameResult=='C'){
+            timesLost += 1;
+            console.log('you lost!')
+        }
 
+        else {
+            console.log('you tied!')
+        }
+
+        
+    }
+    if(timesWon>timesLost){
+        console.log('after five rounds, you won ' + timesWon + '! you win.')
+    }
+    else if(timesWon<timesLost){
+        console.log('after five rounds, you lost ' + timesLost + '! you lose.')
+    }
+    else{
+        console.log('after five rounds, you won as much as you lost!' + '! you tie.')
     }
 }
 game()
