@@ -1,5 +1,30 @@
 let rps = ['rock','paper','scissors']
 
+const rock = document.getElementById('rock')
+const paper = document.getElementById('paper')
+const scissors = document.getElementById('scissors')
+
+const dubs = document.getElementById('dubs')
+const ls = document.getElementById('ls')
+const ties = document.getElementById('ties')
+
+
+rock.addEventListener('click', () => {
+    playRound('rock', computerPlay())
+})
+paper.addEventListener('click', () => {
+    playRound('paper', computerPlay())
+})
+scissors.addEventListener('click', () => {
+    playRound('scissors', computerPlay())
+})
+
+function add(thing, string){
+    thing.textContent = (parseInt(thing.textContent) + 1) + ' ' + string
+}
+
+
+
 function computerPlay(){
     return(rps[Math.floor(Math.random()*rps.length)]);
 }
@@ -7,38 +32,56 @@ function computerPlay(){
 function playRound(playerSelection, computerSelection){
     if(playerSelection=='rock'){
         if(computerSelection=='scissors'){
-            return 'P';
+           add(dubs,'dubs')
         }
         else if (computerSelection=='paper'){
-            return 'C';
+            add(ls, 'Ls')
         }
         else{
-            return 'T';
+            add(ties, 'ties')
         }
     }
     if(playerSelection=='paper'){
         if(computerSelection=='rock'){
-            return 'P';
+            add(dubs,'dubs')
         }
         else if (computerSelection=='scissors'){
-            return 'C';
+            add(ls, 'Ls')
         }
         else{
-            return 'T';
+            add(ties, 'ties')
         }
     }
     if(playerSelection=='scissors'){
         if(computerSelection=='paper'){
-            return 'P';
+            add(dubs,'dubs')
         }
         else if (computerSelection=='rock'){
-            return 'C';
+            add(ls, 'Ls')
         }
         else{
-            return 'T';
+            add(ties, 'ties')
         }
     }
+
+    if (parseInt(dubs.textContent) == 5){
+        alert('You won!')
+        reset()
+        
+    }
     
+    else if (parseInt(ls.textContent) == 5){
+        alert('You lost!')
+        reset()
+    }
+    
+    
+}
+
+function reset(){
+    dubs.textContent = '0 dubs'
+    ls.textContent = '0 Ls'
+    ties.textContent = '0 ties'
 }
 
 function game(){
@@ -80,4 +123,3 @@ function game(){
         console.log('after five rounds, you won as much as you lost!' + '! you tie.')
     }
 }
-game()
